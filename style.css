@@ -1,0 +1,50 @@
+html,body{
+    padding: 0%;
+    margin: 0%;
+    background-color: black;
+    font-family: Helvetica,Arial, sans-serif;
+
+}
+header{
+    background-color: black;
+    
+}
+.brand{
+    max-width: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1250px;
+    margin:0 auto;
+    
+    
+    
+}
+.main-nav{
+    list-style: none;
+    display: inline-flex;
+    /* display: none; */
+}
+.left-cont{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.nav-item{
+    color: white;
+    margin-right: 30px;
+}
+
+.icon{
+    width: 30px;
+    margin: 10px 6px;
+    
+}
