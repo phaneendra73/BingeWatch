@@ -49,6 +49,45 @@ header{
     
 }
 
+/*movie sectoin */
+
+
+.movies-sec-head{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.explore{
+    color: #54b9c5;
+    font-size: 12px;
+    display: none;
+
+}
+.movies-sec-head:hover .explore{
+    display: inline-block;
+    
+}
+.movies-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.movie-item{
+    width: 246px;
+    margin: 6px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+.movie-item:hover{
+    transform: scale(1.2);
+    transition: transform linear 500ms;
+}
+
+
 @media (max-width:767px) {
     .main-nav{
         display: none;
