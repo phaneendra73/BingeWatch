@@ -1,3 +1,7 @@
+*::-webkit-scrollbar{
+    display: none;
+
+}
 html,body{
     padding: 0%;
     margin: 0%;
@@ -5,6 +9,13 @@ html,body{
     font-family: Helvetica,Arial, sans-serif;
 
 }
+
+.container{
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
 header{
     background-color: black;
     
@@ -19,11 +30,6 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    max-width: 1250px;
-    margin:0 auto;
-    
-    
     
 }
 .main-nav{
@@ -74,8 +80,11 @@ header{
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: nowrap;
+    overflow-y: auto;
 
 }
+
 .movie-item{
     width: 246px;
     margin: 6px;
@@ -86,6 +95,82 @@ header{
     transform: scale(1.2);
     transition: transform linear 500ms;
 }
+.banner-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 98vh;
+    padding-top: 80px;
+    position: relative;
+    
+}
+.banner-content{
+    display:flex;
+    flex-direction: column;
+    padding-top: 70px;
+    
+  
+}
+
+.banner-title{
+    color: white;
+    font-size: 70px;
+    line-height: 1.2;
+    margin: 0;
+    margin-bottom: 16px;
+    max-width: 40%;
+}
+.banner-info{
+    color: rgb(252, 252, 252);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+.banner-overview{
+    color: white;
+    font-size: 17px;
+    line-height: 1.2;
+    max-width: 40%;
+}
+.action-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+}
+.action-button{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border: none;
+    padding: 8px 23px;
+    margin: 11px;
+    align-items: center;
+    flex-direction: row;
+    font-size: 16px;
+    font-weight: 700;
+    cursor:pointer;
+    border-radius: 6px;
+
+}
+.action-button:last-child{
+    background-color: rgba(109, 109, 110, 0.7);
+    color:white;
+}
+.banner_fadeBottom{
+    height: 200px;
+    background:linear-gradient(180deg,
+        transparent,
+        rgba(37,37,37,.61),
+        #141414
+    ); 
+    position: absolute;
+    left:0;
+    bottom: 0;
+    width: 100%;
+}
+
 
 
 @media (max-width:767px) {
