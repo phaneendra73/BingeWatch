@@ -3,12 +3,14 @@ const apiEndPoint = "https://api.themoviedb.org/3/";
 const imgpath= "https://image.tmdb.org/t/p/original";
 const allpath = {
     getAllCat: `${apiEndPoint}genre/movie/list?api_key=${apikey}&language=en-US`,
-    getmovielist: (id) =>`${apiEndPoint}discover/movie?api_key=${apikey}&with_genres=${id}`
+    gettrending: `${apiEndPoint}/trending/all/day?api_key=${apikey}&language=en-US`,
+    getmovielist: (id) =>`${apiEndPoint}discover/movie?api_key=${apikey}&with_genres=${id}`,
+    
 }
 
 
-
 function loadingcomplete() {
+    fetchAndbuildSection(allpath.gettrending,'Trending Now');
     getallgeners()
 }
 
@@ -17,10 +19,10 @@ function getallgeners() {
     fetch(allpath.getAllCat)
         .then(res => res.json())
         .then(res => {
-            const catogires = res.genres
+            const catogires = res.genres;
             if (Array.isArray(catogires) && catogires.length) {
-                catogires.slice(0,7).forEach(catogire => {
-                    fetchAndbuildSection(allpath.getmovielist(catogire.id),catogire);
+                catogires.slice(0,7).forEach(category=> {
+                    fetchAndbuildSection(allpath.getmovielist(category.id),category.name);
                 } );
             }
             // console.table(catogires)
@@ -56,7 +58,7 @@ function buildMoviesSection(list, categoryName)
     `}).join('');
 
     const moviesSectionHTML = `
-        <h2 class="movies-sec-head">${categoryName.name} <span class="explore">Explore All ></span></h2>
+        <h2 class="movies-sec-head">${categoryName} <span class="explore">Explore All ></span></h2>
         <div class="movies-row">
             ${moviesListHTML}
         </div>
