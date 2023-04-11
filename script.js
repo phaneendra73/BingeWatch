@@ -10,11 +10,36 @@ const allpath = {
 
 
 function loadingcomplete() {
-    fetchAndbuildSection(allpath.gettrending,'Trending Now');
+    getbanner()
+   
     getallgeners()
 }
-
-
+function getbanner (){
+    fetchAndbuildSection(allpath.gettrending,'Trending Now')
+  
+    .then(list =>{
+        const index = parseInt(Math.random()*list.length);
+        buildbannersection(list[index]);
+    })
+    .catch(err=>console.error(err))
+    
+}
+function buildbannersection(movie){
+    const bannercont = document.getElementById('banner-sec')
+    bannercont.style.backgroundImage =`url('${imgpath}${movie.backdrop_path}')`;
+    const div=document.createElement('div');
+    div.innerHTML=
+   `<h2 class="banner-title">${movie.original_title||movie.name}</h2>
+    <p class="banner-info">Ratting ${movie.vote_average}⭐</p>
+    <p class="banner-overview">${movie.overview}<p>
+    <div class="action-buttons">
+      <button class="action-button"> ▶️ Play</button>
+      <button class="action-button"> ℹ️ More info</button>
+      <div>
+  `;
+  div.className="banner-content container"
+  bannercont.append(div)
+}
 function getallgeners() {
     fetch(allpath.getAllCat)
         .then(res => res.json())
@@ -53,7 +78,7 @@ function buildMoviesSection(list, categoryName)
     
     const moviesListHTML = list.map(item => {
         return `
-            <img class="movie-item" src="${imgpath}${item.backdrop_path}" alt="${item.title}" />
+            <img class="movie-item" src="${imgpath}${item.backdrop_path}" alt="${item.original_title}" />
         
     `}).join('');
 
@@ -73,4 +98,12 @@ function buildMoviesSection(list, categoryName)
 }
 
 
-window.addEventListener('load', loadingcomplete())
+window.addEventListener('load', function(){
+    loadingcomplete()
+    window.addEventListener('scroll', function(){
+        // header ui update
+        const header = document.getElementById('header');
+        if (window.scrollY > 5) header.classList.add('black-bg')
+        else header.classList.remove('black-bg');
+    })
+})
