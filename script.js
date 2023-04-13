@@ -5,13 +5,12 @@ const allpath = {
     getAllCat: `${apiEndPoint}genre/movie/list?api_key=${apikey}&language=en-US`,
     gettrending: `${apiEndPoint}/trending/all/day?api_key=${apikey}&language=en-US`,
     getmovielist: (id) =>`${apiEndPoint}discover/movie?api_key=${apikey}&with_genres=${id}`,
-    
+    searchOnYt:(query) => `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=AIzaSyD8s94vQ4wdl8D5qRlYBzmdZN_nNSNK-o8`
 }
 
 
 function loadingcomplete() {
     getbanner()
-   
     getallgeners()
 }
 function getbanner (){
@@ -24,13 +23,18 @@ function getbanner (){
     .catch(err=>console.error(err))
     
 }
+
 function buildbannersection(movie){
+     const you=movie.vote_average
+    const rating=Math.round(you)
     const bannercont = document.getElementById('banner-sec')
     bannercont.style.backgroundImage =`url('${imgpath}${movie.backdrop_path}')`;
+    
     const div=document.createElement('div');
     div.innerHTML=
    `<h2 class="banner-title">${movie.original_title||movie.name}</h2>
-    <p class="banner-info">Ratting ${movie.vote_average}⭐</p>
+    <p class="banner-info">IMDB ${rating}⭐</p>
+    <p class="banner-overview">${movie.release_date}<p>
     <p class="banner-overview">${movie.overview}<p>
     <div class="action-buttons">
       <button class="action-button"> ▶️ Play</button>
@@ -46,7 +50,7 @@ function getallgeners() {
         .then(res => {
             const catogires = res.genres;
             if (Array.isArray(catogires) && catogires.length) {
-                catogires.slice(0,7).forEach(category=> {
+                catogires.slice(0,6).forEach(category=> {
                     fetchAndbuildSection(allpath.getmovielist(category.id),category.name);
                 } );
             }
@@ -73,12 +77,21 @@ function fetchAndbuildSection(fetchUrl, categoryName){
 function buildMoviesSection(list, categoryName)
 {
     console.log(list, categoryName);
+   
 
     const moviesCont = document.getElementById('movies-cont');
     
     const moviesListHTML = list.map(item => {
+        const you=item.vote_average;
+        const rating=Math.round(you);
         return `
-            <img class="movie-item" src="${imgpath}${item.backdrop_path}" alt="${item.original_title}" />
+        <div class="movie-item" onclick="searchtrailer('${item.title}', 'yt${item.id}')">
+        <img class="nlogo" src="./images/N.png">
+        <span class="movie-info">
+        ${item.title}<br> IMDB : ${rating}⭐<br>DT : ${item.release_date}<br></span>
+            <img  class="movie-item-img" src="${imgpath}${item.backdrop_path}" alt="${item.title}"/>
+            <div class="iframe-wrap" id="yt${item.id}"></div>
+        </div>
         
     `}).join('');
 
@@ -96,6 +109,27 @@ function buildMoviesSection(list, categoryName)
     // append html into movies container
     moviesCont.append(div);
 }
+
+function searchtrailer(Moviename,iframId){
+    if(!Moviename)  return;
+
+    fetch(allpath.searchOnYt(Moviename))
+    .then(res => res.json())
+    .then(res => {
+        const bestResult = res.items[0];
+        
+        const elements = document.getElementById(iframId);
+        console.log(elements, iframId);
+
+        const div = document.createElement('div');
+        div.innerHTML = `<iframe width="400px" height="220px" src="https://www.youtube.com/embed/${bestResult.id.videoId}?autoplay=1&controls=0"></iframe>`
+
+        elements.append(div);
+        
+    })
+    .catch(err=>console.log(err));
+}
+
 
 
 window.addEventListener('load', function(){
