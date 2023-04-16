@@ -10,8 +10,8 @@ const allpath = {
 
 
 function loadingcomplete() {
-    getbanner()
-    getallgeners()
+    getbanner();
+    getallgeners();
 }
 function getbanner (){
     fetchAndbuildSection(allpath.gettrending,'Trending Now')
@@ -25,9 +25,9 @@ function getbanner (){
 }
 
 function buildbannersection(movie){
-     const you=movie.vote_average
-    const rating=Math.round(you)
-    const bannercont = document.getElementById('banner-sec')
+     const num=movie.vote_average
+    const rating=Math.round(num);
+    const bannercont = document.getElementById('banner-sec');
     bannercont.style.backgroundImage =`url('${imgpath}${movie.backdrop_path}')`;
     
     const div=document.createElement('div');
@@ -41,8 +41,8 @@ function buildbannersection(movie){
       <button class="action-button"> ℹ️ More info</button>
       <div>
   `;
-  div.className="banner-content container"
-  bannercont.append(div)
+  div.className="banner-content container";
+  bannercont.append(div);
 }
 function getallgeners() {
     fetch(allpath.getAllCat)
@@ -56,7 +56,7 @@ function getallgeners() {
             }
             // console.table(catogires)
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
 
 }
 function fetchAndbuildSection(fetchUrl, categoryName){
@@ -71,7 +71,7 @@ function fetchAndbuildSection(fetchUrl, categoryName){
         }
         return movies;
     })
-    .catch(err=>console.error(err))
+    .catch(err=>console.error(err));
 }
 
 function buildMoviesSection(list, categoryName)
@@ -95,13 +95,12 @@ function buildMoviesSection(list, categoryName)
         
     `}).join('');
 
-
     const moviesSectionHTML = `
         <h2 class="movies-sec-head">${categoryName} <span class="explore">Explore All ></span></h2>
         <div class="movies-row">
             ${moviesListHTML}
         </div>
-    `
+    `;
 
     const div = document.createElement('div');
     div.className = "movies-section"
@@ -123,7 +122,7 @@ function searchtrailer(Moviename,iframId){
         console.log(elements, iframId);
 
         const div = document.createElement('div');
-        div.innerHTML = `<iframe width="400px" height="220px" src="https://www.youtube.com/embed/${bestResult.id.videoId}?autoplay=1&controls=0"></iframe>`
+        div.innerHTML = `<iframe width="400px" height="220px" src="https://www.youtube.com/embed/${bestResult.id.videoId}?autoplay=1&controls=0"></iframe>`;
 
         elements.append(div);
         
@@ -134,11 +133,11 @@ function searchtrailer(Moviename,iframId){
 
 
 window.addEventListener('load', function(){
-    loadingcomplete()
+    loadingcomplete();
     window.addEventListener('scroll', function(){
         // header ui update
         const header = document.getElementById('header');
-        if (window.scrollY > 5) header.classList.add('black-bg')
+        if (window.scrollY > 5) header.classList.add('black-bg');
         else header.classList.remove('black-bg');
-    })
-})
+    });
+});
