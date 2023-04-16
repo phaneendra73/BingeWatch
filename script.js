@@ -95,6 +95,7 @@ function buildMoviesSection(list, categoryName)
         
     `}).join('');
 
+
     const moviesSectionHTML = `
         <h2 class="movies-sec-head">${categoryName} <span class="explore">Explore All ></span></h2>
         <div class="movies-row">
@@ -109,7 +110,7 @@ function buildMoviesSection(list, categoryName)
     // append html into movies container
     moviesCont.append(div);
 }
-
+//youtube api fetching section
 function searchtrailer(Moviename,iframId){
     if(!Moviename)  return;
 
