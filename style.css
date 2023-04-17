@@ -1,7 +1,3 @@
-*::-webkit-scrollbar {
-    display: none;
-
-}
 
 html,
 body {
@@ -17,6 +13,11 @@ body {
     max-width: 1525px;
     margin: 0 auto;
 }
+*::-webkit-scrollbar {
+    display: none;
+
+}
+
 
 header {
     background-color: transparent;
