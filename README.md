@@ -11,4 +11,3 @@ As a big fan of Netflix, I had a lot of fun creating this clone and learning mor
 I have used the real time data API from the site called TMDB just like IMDB and it can play movie trailer video on clicking on it using the youtube API.
 
 Please feel free to check it out and let me know what you think. If you have any feedback or questions, I'd love to hear from you. Thanks for your support!
-![watch](./images/preview2.png)
