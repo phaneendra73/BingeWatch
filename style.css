@@ -226,8 +226,32 @@ header.black-bg {
   display: block;
 }
 footer {
-  background-color: #333;
-  height: 20vh;
+  height: 30vh;
+  background-color: #222222;
+  padding: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.social-icons {
+  margin-bottom: 40px;
+  transition: font-size 2s;
+}
+.social-icons a:hover {
+  font-size: 55px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 20px;
+  color: #ffffff;
+  font-size: 50px;
+  text-decoration: none;
+}
+
+footer p {
+  margin: 0;
+  font-size: 20px;
 }
 
 @media (max-width: 948px) {
